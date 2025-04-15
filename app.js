@@ -4,6 +4,7 @@ const { Pool } = require('pg');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const helmet = require('helmet');
+const cors = require('cors');
 const dotenv = require('dotenv');
 const accountRoutes = require('./routes/accountRoutes');
 
@@ -32,6 +33,7 @@ app.locals.pool = pool;
 app.use(helmet()); // Security headers
 app.use(morgan('dev')); // Logging
 app.use(bodyParser.json()); // Parse JSON bodies
+app.use(cors());
 
 // Routes
 app.use('/api/accounts', accountRoutes);
